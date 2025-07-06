@@ -6,4 +6,6 @@ export abstract class FornecedorRepository {
   abstract findByEmail(email: string): Promise<Fornecedor | null>;
   abstract findById(id: string): Promise<Fornecedor | null>;
   abstract findAll(): Promise<Fornecedor[]>;
+  abstract delete(id: string): Promise<void>;
+  abstract save(entity: Fornecedor): Promise<void>;
 }
