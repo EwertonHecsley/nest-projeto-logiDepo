@@ -65,4 +65,11 @@ export class Fornecedor extends Entity<FornecedorProps> {
     }
     this.attributes.email = email;
   }
+
+  updateCnpj(cnpj: CNPJ): void {
+    if (!cnpj || !cnpj.toString) {
+      throw new BadRequestException('CNPJ invalido.');
+    }
+    this.attributes.cnpj = cnpj;
+  }
 }
