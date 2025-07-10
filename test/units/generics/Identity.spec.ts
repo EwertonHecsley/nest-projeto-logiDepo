@@ -1,7 +1,6 @@
 import { randomUUID } from 'crypto';
 import { Identity } from 'src/core/generics/Identity';
 
-
 jest.mock('crypto', () => ({
   randomUUID: jest.fn(() => 'mocked-uuid'),
 }));
