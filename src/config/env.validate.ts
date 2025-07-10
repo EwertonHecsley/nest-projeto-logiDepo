@@ -40,5 +40,5 @@ export function validate(
     throw new Error(JSON.stringify(errors, null, 2));
   }
 
-  return validatedConfig as EnvironmentVariables;
+  return validatedConfig;
 }
