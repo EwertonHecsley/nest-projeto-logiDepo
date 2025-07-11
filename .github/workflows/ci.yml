@@ -25,5 +25,12 @@ jobs:
       - name: ✅ Rodar testes
         run: npm run test -- --passWithNoTests
 
-      - name: 📊 Gerar cobertura (opcional)
+      - name: 📊 Gerar cobertura
         run: npm run test -- --coverage
+
+      - name: 📤 Enviar cobertura ao Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./coverage/lcov.info
+ 
