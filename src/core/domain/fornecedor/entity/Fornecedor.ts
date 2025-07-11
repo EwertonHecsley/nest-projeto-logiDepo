@@ -60,14 +60,14 @@ export class Fornecedor extends Entity<FornecedorProps> {
   }
 
   updateEmail(email: Email): void {
-    if (!email || !email.toString) {
+    if (!(email instanceof Email) || !email.toString) {
       throw new BadRequestException('Email invalido.');
     }
     this.attributes.email = email;
   }
 
   updateCnpj(cnpj: CNPJ): void {
-    if (!cnpj || !cnpj.toString) {
+    if (!(cnpj instanceof CNPJ) || !cnpj.toString) {
       throw new BadRequestException('CNPJ invalido.');
     }
     this.attributes.cnpj = cnpj;
