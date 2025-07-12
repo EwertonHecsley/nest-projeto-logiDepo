@@ -2,6 +2,7 @@ import { plainToInstance } from 'class-transformer';
 import {
   IsEnum,
   IsNumber,
+  IsString,
   Max,
   Min,
   validateSync,
@@ -23,6 +24,9 @@ class EnvironmentVariables {
   @Min(0)
   @Max(65535)
   PORT!: number;
+
+  @IsString()
+  DATABASE_URL: string;
 }
 
 export function validate(
