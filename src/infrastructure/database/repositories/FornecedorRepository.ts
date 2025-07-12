@@ -6,7 +6,9 @@ import {
 } from 'src/core/domain/fornecedor/repository/Fornecedor.repository';
 import { PrismaService } from '../prisma/prisma.service';
 import { FornecedorPrismaMapper } from '../prisma/mappers/fornecedor/FornecedorPrismaMapper';
+import { Injectable } from '@nestjs/common';
 
+@Injectable()
 export class FornecedorPrismaRepository implements FornecedorRepository {
   constructor(private readonly prismaService: PrismaService) {}
 
