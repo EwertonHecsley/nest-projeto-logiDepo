@@ -19,7 +19,9 @@ export class CreateFornecedorUseCase {
     const { cnpj, razaoSocial, email } = data;
 
     const cnpjexists = await this.fornecedorRepository.findByCnpj(cnpj);
-    if (cnpjexists) return left(new BadRequestException('CNPJ ja cadastrado.'));
+    if (cnpjexists) {
+      return left(new BadRequestException('CNPJ ja cadastrado.'));
+    }
 
     const emailExists = await this.fornecedorRepository.findByEmail(email);
     if (emailExists)

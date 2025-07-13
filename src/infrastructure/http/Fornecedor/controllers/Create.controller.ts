@@ -1,11 +1,4 @@
-import {
-  Body,
-  Controller,
-  HttpCode,
-  HttpStatus,
-  Post,
-  Res,
-} from '@nestjs/common';
+import { Body, Controller, HttpCode, Post, Res } from '@nestjs/common';
 import { CreateFornecedorUseCase } from 'src/applications/useCase/fornecedor/Create';
 import { CreateFornecedorDto } from '../dto/CreateFornecedorDto';
 import { Response } from 'express';
@@ -24,7 +17,7 @@ export class CreateFornecedorController {
     const result = await this.createService.execute(dataFornecedor);
     if (result.isLeft()) {
       const { message } = result.value;
-      response.status(HttpStatus.BAD_REQUEST).json({ message });
+      response.status(result.value.getStatus()).json({ message });
       return;
     }
 
