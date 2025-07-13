@@ -1,6 +1,5 @@
 generator client {
   provider = "prisma-client-js"
-  output   = "../generated/prisma"
 }
 
 datasource db {
@@ -9,12 +8,12 @@ datasource db {
 }
 
 model Fornecedor {
-  id        String    @id @default(uuid()) @db.Uuid
+  id          String    @id @default(uuid()) @db.Uuid
   razaoSocial String    @db.VarChar(255)
-  cnpj      String    @unique @db.VarChar(14)
-  email     String    @unique @db.VarChar(255)
-  createdAt DateTime  @default(now()) @db.Timestamp()
-  products  Product[]
+  cnpj        String    @unique @db.VarChar(14)
+  email       String    @unique @db.VarChar(255)
+  createdAt   DateTime  @default(now()) @db.Timestamp()
+  products    Product[]
 
   @@map("fornecedores")
 }
