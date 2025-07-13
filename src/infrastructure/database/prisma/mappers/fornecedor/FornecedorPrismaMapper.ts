@@ -1,4 +1,4 @@
-import { Fornecedor as FornecedorDatabase } from 'generated/prisma';
+import { Fornecedor as FornecedorDatabase } from '@prisma/client';
 import { Fornecedor } from 'src/core/domain/fornecedor/entity/Fornecedor';
 import { CNPJ } from 'src/core/domain/objectValues/CNPJ';
 import { Email } from 'src/core/domain/objectValues/Email';
