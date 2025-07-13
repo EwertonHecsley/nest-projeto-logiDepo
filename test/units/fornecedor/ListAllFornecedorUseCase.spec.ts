@@ -3,6 +3,7 @@ import { Fornecedor } from 'src/core/domain/fornecedor/entity/Fornecedor';
 import { FornecedorRepository } from 'src/core/domain/fornecedor/repository/Fornecedor.repository';
 import { CNPJ } from 'src/core/domain/objectValues/CNPJ';
 import { Email } from 'src/core/domain/objectValues/Email';
+import { PaginatedResponse } from 'src/core/domain/fornecedor/repository/Fornecedor.repository';
 
 describe('ListAllFornecedorUseCase', () => {
   let useCase: ListAllFornecedorUseCase;
@@ -22,21 +23,52 @@ describe('ListAllFornecedorUseCase', () => {
     useCase = new ListAllFornecedorUseCase(repository);
   });
 
-  it('deve retornar uma lista de fornecedores', async () => {
-    repository.findAll.mockResolvedValue([fornecedor]);
+  it('deve retornar uma lista paginada de fornecedores', async () => {
+    const page = 1;
+    const limit = 10;
 
-    const result = await useCase.execute();
+    const paginatedResponse: PaginatedResponse<Fornecedor> = {
+      data: [fornecedor],
+      total: 1,
+      page,
+      limit,
+    };
 
-    expect(result).toHaveLength(1);
-    expect(result[0]).toBeInstanceOf(Fornecedor);
-    expect(result[0].razaoSocial).toBe('Fornecedor 1');
+    repository.findAll.mockResolvedValue(paginatedResponse);
+
+    const result = await useCase.execute({ page, limit });
+
+    expect(result.isRight()).toBe(true);
+
+    const value = result.value as PaginatedResponse<Fornecedor>;
+    expect(value.data).toHaveLength(1);
+    expect(value.data[0]).toBeInstanceOf(Fornecedor);
+    expect(value.total).toBe(1);
+    expect(value.page).toBe(page);
+    expect(value.limit).toBe(limit);
   });
 
-  it('deve retornar uma lista vazia se nenhum fornecedor existir', async () => {
-    repository.findAll.mockResolvedValue([]);
+  it('deve retornar uma lista paginada vazia', async () => {
+    const page = 1;
+    const limit = 10;
 
-    const result = await useCase.execute();
+    const paginatedResponse: PaginatedResponse<Fornecedor> = {
+      data: [],
+      total: 0,
+      page,
+      limit,
+    };
 
-    expect(result).toEqual([]);
+    repository.findAll.mockResolvedValue(paginatedResponse);
+
+    const result = await useCase.execute({ page, limit });
+
+    expect(result.isRight()).toBe(true);
+
+    const value = result.value as PaginatedResponse<Fornecedor>;
+    expect(value.data).toEqual([]);
+    expect(value.total).toBe(0);
+    expect(value.page).toBe(page);
+    expect(value.limit).toBe(limit);
   });
 });
