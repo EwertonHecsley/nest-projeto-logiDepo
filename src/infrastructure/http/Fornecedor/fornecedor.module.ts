@@ -9,6 +9,8 @@ import { DeleteFornecedorUseCase } from 'src/applications/useCase/fornecedor/Del
 import { DeleteFornecedorController } from './controllers/Delete.controller';
 import { FindFornecedorUseCase } from 'src/applications/useCase/fornecedor/Find';
 import { FindFornecedorController } from './controllers/Find.controller';
+import { UpdateFornecedorUseCase } from 'src/applications/useCase/fornecedor/Update';
+import { UpdateFornecedorController } from './controllers/Update.controller';
 
 @Module({
   imports: [DatabaseModule],
@@ -41,12 +43,20 @@ import { FindFornecedorController } from './controllers/Find.controller';
       },
       inject: [FornecedorRepository],
     },
+    {
+      provide: UpdateFornecedorUseCase,
+      useFactory: (fornecedorRepository: FornecedorRepository) => {
+        return new UpdateFornecedorUseCase(fornecedorRepository);
+      },
+      inject: [FornecedorRepository],
+    },
   ],
   controllers: [
     CreateFornecedorController,
     ListAllFornecedorController,
     DeleteFornecedorController,
     FindFornecedorController,
+    UpdateFornecedorController,
   ],
 })
 export class FornecedorModule {}
