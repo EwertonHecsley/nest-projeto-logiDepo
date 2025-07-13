@@ -3,6 +3,8 @@ import { CreateFornecedorUseCase } from 'src/applications/useCase/fornecedor/Cre
 import { FornecedorRepository } from 'src/core/domain/fornecedor/repository/Fornecedor.repository';
 import { DatabaseModule } from 'src/infrastructure/database/database.module';
 import { CreateFornecedorController } from './controllers/Create.controller';
+import { ListAllFornecedorUseCase } from 'src/applications/useCase/fornecedor/ListAll';
+import { ListAllFornecedorController } from './controllers/ListAll.controller';
 
 @Module({
   imports: [DatabaseModule],
@@ -14,7 +16,14 @@ import { CreateFornecedorController } from './controllers/Create.controller';
       },
       inject: [FornecedorRepository],
     },
+    {
+      provide: ListAllFornecedorUseCase,
+      useFactory: (fornecedorRepository: FornecedorRepository) => {
+        return new ListAllFornecedorUseCase(fornecedorRepository);
+      },
+      inject: [FornecedorRepository],
+    },
   ],
-  controllers: [CreateFornecedorController],
+  controllers: [CreateFornecedorController, ListAllFornecedorController],
 })
 export class FornecedorModule {}
