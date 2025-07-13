@@ -10,11 +10,14 @@ export class ListAllFornecedorController {
   @Get()
   @HttpCode(200)
   async handle(
-    @Query('page') page = 1,
-    @Query('limit') limit = 10,
+    @Query('page') _page = 1,
+    @Query('limit') _limit = 10,
     @Res() response: Response,
   ): Promise<void> {
-    const result = await this.fornecedorService.execute({ limit, page });
+    const result = await this.fornecedorService.execute({
+      limit: _limit,
+      page: _page,
+    });
 
     if (result.isLeft()) {
       const error = result.value;
