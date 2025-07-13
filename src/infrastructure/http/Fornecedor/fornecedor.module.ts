@@ -5,6 +5,12 @@ import { DatabaseModule } from 'src/infrastructure/database/database.module';
 import { CreateFornecedorController } from './controllers/Create.controller';
 import { ListAllFornecedorUseCase } from 'src/applications/useCase/fornecedor/ListAll';
 import { ListAllFornecedorController } from './controllers/ListAll.controller';
+import { DeleteFornecedorUseCase } from 'src/applications/useCase/fornecedor/Delete';
+import { DeleteFornecedorController } from './controllers/Delete.controller';
+import { FindFornecedorUseCase } from 'src/applications/useCase/fornecedor/Find';
+import { FindFornecedorController } from './controllers/Find.controller';
+import { UpdateFornecedorUseCase } from 'src/applications/useCase/fornecedor/Update';
+import { UpdateFornecedorController } from './controllers/Update.controller';
 
 @Module({
   imports: [DatabaseModule],
@@ -23,7 +29,34 @@ import { ListAllFornecedorController } from './controllers/ListAll.controller';
       },
       inject: [FornecedorRepository],
     },
+    {
+      provide: DeleteFornecedorUseCase,
+      useFactory: (fornecedorRepository: FornecedorRepository) => {
+        return new DeleteFornecedorUseCase(fornecedorRepository);
+      },
+      inject: [FornecedorRepository],
+    },
+    {
+      provide: FindFornecedorUseCase,
+      useFactory: (fornecedorRepository: FornecedorRepository) => {
+        return new FindFornecedorUseCase(fornecedorRepository);
+      },
+      inject: [FornecedorRepository],
+    },
+    {
+      provide: UpdateFornecedorUseCase,
+      useFactory: (fornecedorRepository: FornecedorRepository) => {
+        return new UpdateFornecedorUseCase(fornecedorRepository);
+      },
+      inject: [FornecedorRepository],
+    },
   ],
-  controllers: [CreateFornecedorController, ListAllFornecedorController],
+  controllers: [
+    CreateFornecedorController,
+    ListAllFornecedorController,
+    DeleteFornecedorController,
+    FindFornecedorController,
+    UpdateFornecedorController,
+  ],
 })
 export class FornecedorModule {}
