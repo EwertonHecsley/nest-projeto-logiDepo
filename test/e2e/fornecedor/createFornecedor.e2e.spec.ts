@@ -8,6 +8,7 @@ import { Email } from 'src/core/domain/objectValues/Email';
 import { right, left } from 'src/shared/either';
 import { BadRequestException } from '@nestjs/common';
 import { NestExpressApplication } from '@nestjs/platform-express';
+import { PrismaService } from 'src/infrastructure/database/prisma/prisma.service';
 
 describe('POST /fornecedor (e2e)', () => {
   let app: NestExpressApplication;
@@ -26,6 +27,11 @@ describe('POST /fornecedor (e2e)', () => {
       .overrideProvider(CreateFornecedorUseCase)
       .useValue({
         execute: jest.fn(),
+      })
+
+      .overrideProvider(PrismaService)
+      .useValue({
+        $connect: jest.fn(),
       })
       .compile();
 
