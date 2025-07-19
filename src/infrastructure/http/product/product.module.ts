@@ -5,6 +5,10 @@ import { DatabaseModule } from 'src/infrastructure/database/database.module';
 import { CreateProductController } from './controller/Create.controller';
 import { FindProductUseCase } from 'src/applications/useCase/product/Find';
 import { ListAllUseCase } from 'src/applications/useCase/product/List';
+import { FindProductController } from './controller/Find.controller';
+import { ListAllProductsController } from './controller/List.controller';
+import { DeleteProductUseCase } from 'src/applications/useCase/product/Delete';
+import { DeleteProductController } from './controller/Delete.controller';
 
 @Module({
   imports: [DatabaseModule],
@@ -30,7 +34,19 @@ import { ListAllUseCase } from 'src/applications/useCase/product/List';
       },
       inject: [ProductRepository],
     },
+    {
+      provide: DeleteProductUseCase,
+      useFactory: (productRepository: ProductRepository) => {
+        return new DeleteProductUseCase(productRepository);
+      },
+      inject: [ProductRepository],
+    },
   ],
-  controllers: [CreateProductController],
+  controllers: [
+    CreateProductController,
+    FindProductController,
+    ListAllProductsController,
+    DeleteProductController,
+  ],
 })
 export class ProductModule {}
