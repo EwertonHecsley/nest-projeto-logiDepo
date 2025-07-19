@@ -26,7 +26,7 @@ describe('ListAllUseCase', () => {
 
     const paginatedResponse: PaginatedResponse<Product> = {
       data: productsMock,
-      total: 1,
+      total: 2,
       page,
       limit,
     };
@@ -37,9 +37,9 @@ describe('ListAllUseCase', () => {
 
     expect(result.isRight()).toBe(true);
     const value = result.value as PaginatedResponse<Product>;
-    expect(value.data).toHaveLength(1);
+    expect(value.data).toHaveLength(2);
     expect(value.data[0]).toBeInstanceOf(Product);
-    expect(value.total).toBe(1);
+    expect(value.total).toBe(2);
     expect(value.page).toBe(page);
     expect(value.limit).toBe(limit);
   });
