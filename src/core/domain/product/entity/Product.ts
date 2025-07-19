@@ -40,6 +40,20 @@ export class Product extends Entity<ProductProps> {
     return this.attributes.createdAt!;
   }
 
+  get formattedCreatedAt(): string {
+    return this.createdAt.toLocaleDateString('pt-br', {
+      hour: '2-digit',
+      minute: '2-digit',
+    });
+  }
+
+  get formattedPrice(): string {
+    return this.price.toLocaleString('pt-br', {
+      style: 'currency',
+      currency: 'BRL',
+    });
+  }
+
   updateDescription(description: string): void {
     if (!description || description.trim() === '') {
       throw new BadRequestException('Descricao do produto nao pode ser vazia.');
