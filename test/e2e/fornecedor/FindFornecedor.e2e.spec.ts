@@ -10,7 +10,7 @@ import { right, left } from 'src/shared/either';
 import { BadRequestException } from '@nestjs/common';
 import { PrismaService } from 'src/infrastructure/database/prisma/prisma.service';
 
-describe('GET /fornecedor/:id (e2e)', () => {
+describe('GET /api/v1/fornecedor/:id (e2e)', () => {
   let app: NestExpressApplication;
   let findFornecedorUseCase: FindFornecedorUseCase;
 
@@ -48,7 +48,7 @@ describe('GET /fornecedor/:id (e2e)', () => {
     );
 
     const res = await request(app.getHttpServer()).get(
-      `/fornecedor/${fornecedor.id.toString}`,
+      `/api/v1/fornecedor/${fornecedor.id.toString}`,
     );
 
     expect(res.status).toBe(200);
@@ -70,7 +70,7 @@ describe('GET /fornecedor/:id (e2e)', () => {
     );
 
     const res = await request(app.getHttpServer()).get(
-      `/fornecedor/uuid-nao-existente`,
+      `/api/v1/fornecedor/uuid-nao-existente`,
     );
 
     const body = res.body as ErrorResponse;
