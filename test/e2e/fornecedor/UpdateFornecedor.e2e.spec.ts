@@ -7,7 +7,7 @@ import { PrismaService } from 'src/infrastructure/database/prisma/prisma.service
 import { right, left } from 'src/shared/either';
 import { BadRequestException } from '@nestjs/common';
 
-describe('PUT /fornecedor/:id (e2e)', () => {
+describe('PUT /api/v1/fornecedor/:id (e2e)', () => {
   let app: NestExpressApplication;
   let updateFornecedorUseCase: UpdateFornecedorUseCase;
 
@@ -39,7 +39,7 @@ describe('PUT /fornecedor/:id (e2e)', () => {
     );
 
     const res = await request(app.getHttpServer())
-      .put('/fornecedor/uuid-valido')
+      .put('/api/v1/fornecedor/uuid-valido')
       .send({
         razaoSocial: 'Fornecedor Atualizado',
         cnpj: '98.765.432/0001-10',
@@ -56,7 +56,7 @@ describe('PUT /fornecedor/:id (e2e)', () => {
     );
 
     const res = await request(app.getHttpServer())
-      .put('/fornecedor/uuid-invalido')
+      .put('/api/v1/fornecedor/uuid-invalido')
       .send({
         razaoSocial: 'Qualquer Nome',
         cnpj: '00.000.000/0001-00',

@@ -9,7 +9,7 @@ import { CNPJ } from 'src/core/domain/objectValues/CNPJ';
 import { Email } from 'src/core/domain/objectValues/Email';
 import { right } from 'src/shared/either';
 
-describe('GET /fornecedor (e2e)', () => {
+describe('GET /api/v1/fornecedor (e2e)', () => {
   let app: NestExpressApplication;
   let listAllFornecedorUseCase: ListAllFornecedorUseCase;
 
@@ -50,7 +50,7 @@ describe('GET /fornecedor (e2e)', () => {
     );
 
     const res = await request(app.getHttpServer())
-      .get('/fornecedor?page=1&limit=10')
+      .get('/api/v1/fornecedor?page=1&limit=10')
       .send();
 
     expect(res.status).toBe(200);

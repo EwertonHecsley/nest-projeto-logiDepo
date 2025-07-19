@@ -7,7 +7,7 @@ import { right, left } from 'src/shared/either';
 import { BadRequestException } from '@nestjs/common';
 import { PrismaService } from 'src/infrastructure/database/prisma/prisma.service';
 
-describe('DELETE /fornecedor/:id (e2e)', () => {
+describe('DELETE /api/v1/fornecedor/:id (e2e)', () => {
   let app: NestExpressApplication;
   let deleteFornecedorUseCase: DeleteFornecedorUseCase;
 
@@ -39,7 +39,7 @@ describe('DELETE /fornecedor/:id (e2e)', () => {
     );
 
     const res = await request(app.getHttpServer()).delete(
-      '/fornecedor/uuid-valido',
+      '/api/v1/fornecedor/uuid-valido',
     );
 
     expect(res.status).toBe(204);
@@ -52,7 +52,7 @@ describe('DELETE /fornecedor/:id (e2e)', () => {
     );
 
     const res = await request(app.getHttpServer()).delete(
-      '/fornecedor/uuid-invalido',
+      '/api/v1/fornecedor/uuid-invalido',
     );
 
     const body = res.body as ErrorResponse;

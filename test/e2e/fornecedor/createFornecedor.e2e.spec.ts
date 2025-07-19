@@ -10,7 +10,7 @@ import { BadRequestException } from '@nestjs/common';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { PrismaService } from 'src/infrastructure/database/prisma/prisma.service';
 
-describe('POST /fornecedor (e2e)', () => {
+describe('POST /api/v1/fornecedor (e2e)', () => {
   let app: NestExpressApplication;
   let createFornecedorUseCase: CreateFornecedorUseCase;
 
@@ -50,7 +50,7 @@ describe('POST /fornecedor (e2e)', () => {
       right(mockFornecedor),
     );
 
-    const res = await request(app.getHttpServer()).post('/fornecedor').send({
+    const res = await request(app.getHttpServer()).post('/api/v1/fornecedor').send({
       cnpj: '12.345.678/0001-95',
       email: 'teste@empresa.com',
       razaoSocial: 'Fornecedor Teste',
@@ -74,7 +74,7 @@ describe('POST /fornecedor (e2e)', () => {
       left(new BadRequestException('CNPJ ja cadastrado.')),
     );
 
-    const res = await request(app.getHttpServer()).post('/fornecedor').send({
+    const res = await request(app.getHttpServer()).post('/api/v1/fornecedor').send({
       cnpj: '12.345.678/0001-95',
       email: 'teste@empresa.com',
       razaoSocial: 'Fornecedor Teste',
