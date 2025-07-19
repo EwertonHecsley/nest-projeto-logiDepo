@@ -50,11 +50,13 @@ describe('POST /api/v1/fornecedor (e2e)', () => {
       right(mockFornecedor),
     );
 
-    const res = await request(app.getHttpServer()).post('/api/v1/fornecedor').send({
-      cnpj: '12.345.678/0001-95',
-      email: 'teste@empresa.com',
-      razaoSocial: 'Fornecedor Teste',
-    });
+    const res = await request(app.getHttpServer())
+      .post('/api/v1/fornecedor')
+      .send({
+        cnpj: '12.345.678/0001-95',
+        email: 'teste@empresa.com',
+        razaoSocial: 'Fornecedor Teste',
+      });
 
     expect(res.statusCode).toBe(201);
     expect(res.body).toEqual({
@@ -74,11 +76,13 @@ describe('POST /api/v1/fornecedor (e2e)', () => {
       left(new BadRequestException('CNPJ ja cadastrado.')),
     );
 
-    const res = await request(app.getHttpServer()).post('/api/v1/fornecedor').send({
-      cnpj: '12.345.678/0001-95',
-      email: 'teste@empresa.com',
-      razaoSocial: 'Fornecedor Teste',
-    });
+    const res = await request(app.getHttpServer())
+      .post('/api/v1/fornecedor')
+      .send({
+        cnpj: '12.345.678/0001-95',
+        email: 'teste@empresa.com',
+        razaoSocial: 'Fornecedor Teste',
+      });
 
     const body = res.body as ErrorResponse;
 

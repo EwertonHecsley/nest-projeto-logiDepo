@@ -9,6 +9,8 @@ import { FindProductController } from './controller/Find.controller';
 import { ListAllProductsController } from './controller/List.controller';
 import { DeleteProductUseCase } from 'src/applications/useCase/product/Delete';
 import { DeleteProductController } from './controller/Delete.controller';
+import { UpdateProductUseCase } from 'src/applications/useCase/product/Update';
+import { UpdateProductController } from './controller/Update.controller';
 
 @Module({
   imports: [DatabaseModule],
@@ -41,12 +43,20 @@ import { DeleteProductController } from './controller/Delete.controller';
       },
       inject: [ProductRepository],
     },
+    {
+      provide: UpdateProductUseCase,
+      useFactory: (productRepository: ProductRepository) => {
+        return new UpdateProductUseCase(productRepository);
+      },
+      inject: [ProductRepository],
+    },
   ],
   controllers: [
     CreateProductController,
     FindProductController,
     ListAllProductsController,
     DeleteProductController,
+    UpdateProductController,
   ],
 })
 export class ProductModule {}
