@@ -3,7 +3,7 @@ import { Response } from 'express';
 import { ListAllFornecedorUseCase } from 'src/applications/useCase/fornecedor/ListAll';
 import { FornecedorPrismaPresenter } from '../presenter/FornecedorPrismaPresenter';
 
-@Controller('/fornecedor')
+@Controller('api/v1/fornecedor')
 export class ListAllFornecedorController {
   constructor(private readonly fornecedorService: ListAllFornecedorUseCase) {}
 

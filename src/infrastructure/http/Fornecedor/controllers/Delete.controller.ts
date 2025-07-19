@@ -2,7 +2,7 @@ import { Controller, Delete, HttpCode, Param, Res } from '@nestjs/common';
 import { Response } from 'express';
 import { DeleteFornecedorUseCase } from 'src/applications/useCase/fornecedor/Delete';
 
-@Controller('/fornecedor')
+@Controller('api/v1/fornecedor')
 export class DeleteFornecedorController {
   constructor(private readonly fornecedorService: DeleteFornecedorUseCase) {}
 

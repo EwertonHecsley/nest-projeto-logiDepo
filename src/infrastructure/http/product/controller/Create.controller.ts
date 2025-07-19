@@ -4,7 +4,7 @@ import { CreateProductDto } from '../dto/CreateProductDto';
 import { Response } from 'express';
 import { ProductPrismaPresenter } from '../presenter/ProductPrismaPresenter';
 
-@Controller('/product')
+@Controller('api/v1/product')
 export class CreateProductController {
   constructor(private readonly productService: CreateProductUseCase) {}
 

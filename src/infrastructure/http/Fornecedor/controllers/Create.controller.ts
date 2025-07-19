@@ -4,7 +4,7 @@ import { CreateFornecedorDto } from '../dto/CreateFornecedorDto';
 import { Response } from 'express';
 import { FornecedorPrismaPresenter } from '../presenter/FornecedorPrismaPresenter';
 
-@Controller('/fornecedor')
+@Controller('api/v1/fornecedor')
 export class CreateFornecedorController {
   constructor(private readonly createService: CreateFornecedorUseCase) {}
 
