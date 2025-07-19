@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { CreateProductUseCase } from 'src/applications/useCase/product/Create';
 import { ProductRepository } from 'src/core/domain/product/repository/ProductRepository';
 import { DatabaseModule } from 'src/infrastructure/database/database.module';
+import { CreateProductController } from './controller/Create.controller';
 
 @Module({
   imports: [DatabaseModule],
@@ -14,6 +15,6 @@ import { DatabaseModule } from 'src/infrastructure/database/database.module';
       inject: [ProductRepository],
     },
   ],
-  controllers: [],
+  controllers: [CreateProductController],
 })
 export class ProductModule {}
