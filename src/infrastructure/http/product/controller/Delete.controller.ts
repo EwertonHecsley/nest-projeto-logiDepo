@@ -1,10 +1,10 @@
 import { Controller, Delete, HttpCode, Param, Res } from '@nestjs/common';
 import { Response } from 'express';
-import { DeleteFornecedorUseCase } from 'src/applications/useCase/fornecedor/Delete';
+import { DeleteProductUseCase } from 'src/applications/useCase/product/Delete';
 
-@Controller('api/v1/fornecedor')
-export class DeleteFornecedorController {
-  constructor(private readonly fornecedorService: DeleteFornecedorUseCase) {}
+@Controller('/api/v1/product')
+export class DeleteProductController {
+  constructor(private readonly productService: DeleteProductUseCase) {}
 
   @Delete(':id')
   @HttpCode(204)
@@ -12,7 +12,7 @@ export class DeleteFornecedorController {
     @Param('id') id: string,
     @Res() response: Response,
   ): Promise<void> {
-    const result = await this.fornecedorService.execute({ id });
+    const result = await this.productService.execute({ id });
 
     if (result.isLeft()) {
       const { message } = result.value;

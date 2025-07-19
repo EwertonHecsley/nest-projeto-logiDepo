@@ -3,7 +3,7 @@ import { Response } from 'express';
 import { FindFornecedorUseCase } from 'src/applications/useCase/fornecedor/Find';
 import { FornecedorPrismaPresenter } from '../presenter/FornecedorPrismaPresenter';
 
-@Controller('/fornecedor')
+@Controller('api/v1/fornecedor')
 export class FindFornecedorController {
   constructor(private readonly fornecedorService: FindFornecedorUseCase) {}
 

@@ -3,7 +3,7 @@ import { UpdateFornecedorDto } from '../dto/UpdateFornecedorDto';
 import { Response } from 'express';
 import { UpdateFornecedorUseCase } from 'src/applications/useCase/fornecedor/Update';
 
-@Controller('/fornecedor')
+@Controller('api/v1/fornecedor')
 export class UpdateFornecedorController {
   constructor(private readonly fornecedorService: UpdateFornecedorUseCase) {}
 
