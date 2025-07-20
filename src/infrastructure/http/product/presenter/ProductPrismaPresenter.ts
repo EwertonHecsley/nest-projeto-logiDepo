@@ -6,6 +6,7 @@ export class ProductPrismaPresenter {
       id: entity.id.toString,
       description: entity.description,
       price: entity.formattedPrice,
+      quantity: entity.quantity,
       createdAt: entity.formattedCreatedAt,
     };
   }
